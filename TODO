@@ -1,0 +1,49 @@
+* Synchronous versions of operations.
+
+ This may make more sense for some (publishing) than for others
+(browsing).  E.g, PUBLISH-SYNC could signal errors directly.
+BROWSE-SYNC could take a timeout argument.  The advantage here would
+be that it would make these operations slightly easier to use.
+
+
+* Multicast DNS lookups of link-local addresses.  
+
+OS X integrates multicast DNS lookups into its built-in resolver
+system, so hostnames like "John-Wisemans-Computer.local" and
+"dhcppc4.local" can be resolved normally.  Other operating systems
+haven't integrated this yet (though I've read some things that implied
+that Apple's Bonjour (nee rendezvous) installer hooked into NSS on
+Windows).  I have a barebones QUERY-RECORD that can be used to do
+these lookups, but maybe I should do a hostname lookup during the
+RESOLVE operation.
+
+
+* Windows support.
+
+It should be very easy to get this code to work under Windows, but I
+just haven't done it yet.
+
+
+* Examples.
+
+I really want to include some neat examples.  Crazy CLiki integration
+(for use at ILCs?), distcc for Lisp, etc.
+
+
+* Support for meta queries.
+
+Whether this is an API issue or just an idiom, I'm not sure yet.
+
+
+* Unicode/character-to-octet issues.
+
+I barely even try to handle these.
+
+
+* Threading.
+
+It might be nice to at least describe how to use
+PROCESS-DNS-SD-EVENTS, but better might be to actually set up an event
+handling thread.  Or at least offer the option.
+
+* Need to cancel RESOLVE ops?
