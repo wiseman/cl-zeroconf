@@ -114,7 +114,7 @@ tagged version I used was ``mDNSResponder-86``.  Once you've compiled
 the code, install it and start the ``mdnsd`` daemon.
 
 Coincidentally, both SBCL and ACL seem to have had an identical bug in
-their handling of foreign ``short``s on PowerPC.  Franz recently fixed
+their handling of foreign ``short`` on PowerPC.  Franz recently fixed
 the bug in patch update/paa005.001, which you can automatically
 download and install (along with many other patches) by doing
 ``(sys:update-allegro)``.  The bug exhibits itself in CL-ZEROCONF by
