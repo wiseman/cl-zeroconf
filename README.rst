@@ -6,7 +6,7 @@ Introduction
 
 CL-ZEROCONF is a Lisp interface to `Apple's open source
 implementation`_ of the `Zeroconf`_ service discovery protocol, called
-`Bonjour`_.  Apple does a god job of describing why Zeroconf is
+`Bonjour`_.  Apple does a good job of describing why Zeroconf is
 useful:
 
   Bonjour lets you create an instant network of computers and smart
@@ -56,7 +56,7 @@ For some other short examples of how to use the library, see
 `test-browse.lisp`_, which generates an `Araneida`_-based web page
 that displays services on the local network:
 
-[[Image(Screenshots/Images:test-browse-s.jpg)]]
+.. image: http://github.com/wiseman/cl-zeroconf/raw/master/images/test-browse-s.jpg
 
 Richard Newman used CL-ZEROCONF to create a `simple web interface to
 iTunes`_.
@@ -125,15 +125,15 @@ can install CL-ZEROCONF with ASDF-INSTALL (of course).
 
 I hope you find this useful.
 
-.. _Apple's open source implementation: http://developer.apple.com/darwin/projects/bonjour/
+.. _Apple's open source implementation: http://developer.apple.com/opensource/internet/bonjour.html
 .. _Zeroconf: http://zeroconf.org/
 .. _Bonjour: http://www.apple.com/macosx/features/bonjour/
 .. _DNS SRV (RFC 2782) Service Types: http://www.dns-sd.org/ServiceTypes.html
-.. _examples.lisp: 
-.. _test-browse.lisp: 
+.. _examples.lisp: http://github.com/wiseman/cl-zeroconf/blob/master/examples.lisp
+.. _test-browse.lisp: http://github.com/wiseman/cl-zeroconf/blob/master/test-browse.lisp
 .. _Araneida: http://www.cliki.net/araneida
 .. _simple web interface to iTunes: http://www.holygoat.co.uk/blog/entry/2005-02-11-2
-.. _DNSServiceDiscovery API docs: http://developer.apple.com/documentation/Networking/Conceptual/dns_discovery_api/index.html
+.. _DNSServiceDiscovery API docs: http://developer.apple.com/mac/library/documentation/Networking/Conceptual/dns_discovery_api/Introduction.html
 .. _Bonjour Network Services: http://developer.apple.com/documentation/Cocoa/Conceptual/NetServices/index.html#//apple_ref/doc/uid/10000119i
 .. _UFFI: http://uffi.b9.com/
 .. _open source: http://developer.apple.com/darwin/projects/bonjour/
