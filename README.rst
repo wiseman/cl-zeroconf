@@ -94,33 +94,30 @@ multicast DNS Responder, which is a daemon that handles most of the
 work in doing service discovery for you.  mDNSResponder is built in to
 OS X, and is offered as `open source`_ for other operating systems.
 
-It `took me`_ a `while`_ to come to mDNSResponder.  I tried
-[http://www.porchdogsoft.com/products/howl/ Howl], but it was buggy,
-the API was incomplete and the event handling model was different in
-OS X than in the other OSes it supports.  I tried the Cocoa
-NSNetService API and the Core Foundation CFNetServices API, but they
-weren't portable.  I considered writing a complete Lisp implementation
-of multicast DNS that didn't rely on any external libraries other than
-for basic networking, but that has some disadvantages too.
-mDNSResponder is free and quite portable, and saved me a lot of work.
+It `took me`_ a `while`_ to come to mDNSResponder.  I tried `Howl`_,
+but it was buggy, the API was incomplete and the event handling model
+was different in OS X than in the other OSes it supports.  I tried the
+Cocoa NSNetService API and the Core Foundation CFNetServices API, but
+they weren't portable.  I considered writing a complete Lisp
+implementation of multicast DNS that didn't rely on any external
+libraries other than for basic networking, but that has some
+disadvantages too.  mDNSResponder is free and quite portable, and
+saved me a lot of work.
 
 In order to use CL-ZEROCONF on Linux, you will need to download and
-install mDNSResponder.  It can be
-[http://developer.apple.com/darwin/projects/bonjour/ downloaded from
-Apple] as a tarball, or via CVS.  Make sure to
-[http://developer.apple.com/darwin/tools/cvs/howto.html read the
-instructions] on using Apple's Darwin CVS repository--you will need to
-get a (free) Apple ID first.  The mDNSResponder code base is under
-active development, so I recommend getting the code from CVS.  If you
-run into any trouble, the tagged version I used was
-`mDNSResponder-86`.  Once you've compiled the code, install it and
-start the `mdnsd` daemon.
+install mDNSResponder.  It can be `downloaded`_ from Apple] as a
+tarball, or via CVS.  Make sure to `read the instructions`_ on using
+Apple's Darwin CVS repository--you will need to get a (free) Apple ID
+first.  The mDNSResponder code base is under active development, so I
+recommend getting the code from CVS.  If you run into any trouble, the
+tagged version I used was ``mDNSResponder-86``.  Once you've compiled
+the code, install it and start the ``mdnsd`` daemon.
 
 Coincidentally, both SBCL and ACL seem to have had an identical bug in
-their handling of foreign `short`s on PowerPC.  Franz recently fixed
+their handling of foreign ``short``s on PowerPC.  Franz recently fixed
 the bug in patch update/paa005.001, which you can automatically
 download and install (along with many other patches) by doing
-`(sys:update-allegro)`.  The bug exhibits itself in CL-ZEROCONF by
+``(sys:update-allegro)``.  The bug exhibits itself in CL-ZEROCONF by
 causing all service port numbers to be reported as 0.
 
 Once you've patched up your compilers and compiled new daemons, you
@@ -142,3 +139,6 @@ I hope you find this useful.
 .. _open source: http://developer.apple.com/darwin/projects/bonjour/
 .. _took me: http://lemonodor.com/archives/000685.html
 .. _while: http://lemonodor.com/archives/000986.html
+.. _Howl: http://www.porchdogsoft.com/products/howl
+.. _downloaded: http://developer.apple.com/darwin/projects/bonjour/
+.. _read the instructions: http://developer.apple.com/darwin/tools/cvs/howto.html
