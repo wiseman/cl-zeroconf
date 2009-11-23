@@ -13,8 +13,8 @@ useful:
   devices just by getting them connected to each other.  The computers
   and devices take over from there, automatically broadcasting and
   discovering what services each is offering for the use of
-  others. The network could be as simple as two !AirPort
-  Extreme-equipped !PowerBook users sitting in a hotel meeting room
+  others. The network could be as simple as two AirPort
+  Extreme-equipped PowerBook users sitting in a hotel meeting room
   miles from the nearest !AirPort Extreme Base Station with some large
   files they need to share. Before Bonjour, frustration. With Bonjour,
   your computer will discover others, making file sharing completely
@@ -140,5 +140,5 @@ I hope you find this useful.
 .. _took me: http://lemonodor.com/archives/000685.html
 .. _while: http://lemonodor.com/archives/000986.html
 .. _Howl: http://www.porchdogsoft.com/products/howl
-.. _downloaded: http://developer.apple.com/darwin/projects/bonjour/
+.. _downloaded: http://developer.apple.com/opensource/internet/bonjour.html
 .. _read the instructions: http://developer.apple.com/darwin/tools/cvs/howto.html
