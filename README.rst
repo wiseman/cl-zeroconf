@@ -56,7 +56,7 @@ For some other short examples of how to use the library, see
 `test-browse.lisp`_, which generates an `Araneida`_-based web page
 that displays services on the local network:
 
-.. image:: http://github.com/wiseman/cl-zeroconf/raw/master/images/test-browse-s.jpg
+.. image:: https://github.com/wiseman/cl-zeroconf/raw/master/images/test-browse-s.jpg
 
 Richard Newman used CL-ZEROCONF to create a `simple web interface to
 iTunes`_.
