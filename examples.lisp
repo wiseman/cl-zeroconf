@@ -13,7 +13,7 @@
 (dns-sd:process-dns-sd-events 3.0)
 
 
-;; This will advertise an HTTP server that is atually on another
+;; This will advertise an HTTP server that is actually on another
 ;; machine:
 
 (dns-sd:publish
@@ -87,8 +87,8 @@
 (defclass my-observer ()
   ())
 
-(defmethod dns-sd:browse-add-service ((self my-observer) service &key more-coming-p)
-  (declare (ignore more-coming-p))
+(defmethod dns-sd:browse-add-service ((self my-observer) service interface-index &key more-coming-p)
+  (declare (ignore interface-index more-coming-p))
   (format T "~&Found service ~S." service))
 
 (defmethod dns-sd:browse-remove-service ((self my-observer) service &key more-coming-p)
@@ -110,8 +110,8 @@
 (defclass my-observer ()
   ())
 
-(defmethod dns-sd:browse-add-service ((self my-observer) service &key more-coming-p)
-  (declare (ignore more-coming-p))
+(defmethod dns-sd:browse-add-service ((self my-observer) service interface-index &key more-coming-p)
+  (declare (ignore interface-index more-coming-p))
   (format T "~&Found service ~S." service)
   ;; Now resolve it.
   (dns-sd:resolve service self))

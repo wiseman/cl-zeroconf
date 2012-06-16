@@ -86,10 +86,10 @@
 	  (dolist (fd fd-list)
 	    (ccl::fd-set fd infds)
 	    (ccl::fd-set fd errfds))
-	  (let* ((result (ccl::syscall syscalls::select
-				       (1+ (reduce #'max fd-list)) infds
-				       (ccl:%null-ptr) errfds
-				       (if timeout tv (ccl:%null-ptr)))))
+	  (let ((result (ccl::syscall syscalls::select
+				      (1+ (reduce #'max fd-list)) infds
+				      (ccl:%null-ptr) errfds
+				      (if timeout tv (ccl:%null-ptr)))))
 	    (cond ((eql result 0)
 		   ;; The select timed out.
 		   '())
@@ -263,9 +263,13 @@
 
 ;; SBCL
 
+;;#+sbcl
+;;(eval-when (:compile-toplevel :load-toplevel :execute)
+;;  (setf sb-alien::*values-type-okay* T))
+
 #+sbcl
-(define-alien-function %%publish-callback-trampoline
-    (void (oid dns-service-ref)
+(sb-alien::define-alien-callback %%publish-callback-trampoline
+    void ((oid dns-service-ref)
 	  (flags dns-service-flags)
 	  (error-code dns-service-error-type)
 	  (name c-string)
@@ -275,11 +279,11 @@
   (publish-callback-trampoline oid flags error-code name type domain context))
 
 #+sbcl
-(defparameter %publish-callback-trampoline (alien-function-sap %%publish-callback-trampoline))
+(defparameter %publish-callback-trampoline %%publish-callback-trampoline)
 
 #+sbcl
-(define-alien-function %%browse-callback-trampoline
-    (void (oid dns-service-ref)
+(sb-alien::define-alien-callback %%browse-callback-trampoline
+    void ((oid dns-service-ref)
 	  (flags dns-service-flags)
 	  (interface-index unsigned-long)
 	  (error-code dns-service-error-type)
@@ -291,11 +295,11 @@
 			      name type domain context))
 
 #+sbcl
-(defparameter %browse-callback-trampoline (alien-function-sap %%browse-callback-trampoline))
+(defparameter %browse-callback-trampoline %%browse-callback-trampoline)
 
 #+sbcl
-(define-alien-function %%resolve-callback-trampoline
-    (void (oid dns-service-ref)
+(sb-alien::define-alien-callback %%resolve-callback-trampoline
+    void ((oid dns-service-ref)
 	  (flags dns-service-flags)
 	  (interface-index unsigned-long)
 	  (error-code dns-service-error-type)
@@ -309,7 +313,7 @@
 			       full-name host-target port txt-len txt-record context))
 
 #+sbcl
-(defparameter %resolve-callback-trampoline (alien-function-sap %%resolve-callback-trampoline))
+(defparameter %resolve-callback-trampoline %%resolve-callback-trampoline)
 
 
 ;; ACL

@@ -204,7 +204,6 @@
 					       :code error-code))
 	(let* ((flag-syms (browse-flags->symbols flags))
 	       (more-coming-p (and (member :more-coming flag-syms) T)))
-	  (format T "~&BROWSE FLAGS: ~S" flag-syms)
 	  (cond ((member :add flag-syms)
 		 (let ((service (make-instance 'service
 					       :name name
@@ -297,10 +296,10 @@
 (defgeneric resolve (service observer))
 
 
-#|
+#||
 (defmethod publish-sync ((self service) &key (if-exists :rename) (interface 0))
   (publish self *synchronous-observer* :if-exists if-exists :interface interface))
-|#
+||#
 
 (defmethod publish ((self service) observer &key (if-exists :rename) (interface 0) synchronous)
   (check-type (service-name self) string)
@@ -408,7 +407,7 @@
 			       cdomain
 			       %resolve-callback-trampoline
 			       (uffi:make-null-pointer :void)))))
-    (let* ((oid (uffi:deref-pointer oid-ptr dns-service-ref)))
+    (let ((oid (uffi:deref-pointer oid-ptr dns-service-ref)))
       (set-oid-entry oid :resolve observer (list self))
       (add-oid-to-event-loop oid))))
 
@@ -428,7 +427,7 @@
 				1
 				%query-callback-trampoline
 				(uffi:make-null-pointer :void)))
-    (let* ((oid (uffi:deref-pointer oid-ptr dns-service-ref)))
+    (let ((oid (uffi:deref-pointer oid-ptr dns-service-ref)))
       (set-oid-entry oid :query observer '())
       (add-oid-to-event-loop oid))))
 
@@ -453,7 +452,7 @@
 (defgeneric browse-resolved-service (observer service))
 
 
-#|
+#||
 (defclass synchronous-observer ()
   ())
 
@@ -468,7 +467,7 @@
 
 (defmethod browse-resolve-service ((self synchronous-observer) service)
   (declare (ignore self service)))
-|#
+||#
 
 
 ;; Section 6.1 of
@@ -560,14 +559,14 @@
 	   (parse (pos)
 	     (if (>= pos (length record))
 		 (values)
-		 (let* ((len (elt record pos)))
+		 (let ((len (elt record pos)))
 		   (when (> len 0)
-		     (let ((key-end-pos (position *key-value-separator* record :start (+ pos 1))))
-		       (let ((key (bytes-to-string record :start (+ pos 1) :end (safe-min key-end-pos (+ pos 1 len))))
-			     (value (if key-end-pos
-					(subseq record (+ key-end-pos 1) (+ pos len 1))
-					nil)))
-			 (funcall fn key value))))
+		     (let* ((key-end-pos (position *key-value-separator* record :start (+ pos 1)))
+			    (key (bytes-to-string record :start (+ pos 1) :end (safe-min key-end-pos (+ pos 1 len))))
+			    (value (if key-end-pos
+				       (subseq record (+ key-end-pos 1) (+ pos len 1))
+				     nil)))
+		       (funcall fn key value)))
 		   (parse (+ pos len 1))))))
     (parse 0)))
 
